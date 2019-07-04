@@ -20,7 +20,7 @@
 #include <sstream>
 #include <sys/time.h>
 #include "util.h"
-
+#include <unistd.h> // because of error with socket closing see here https://github.com/HIITMetagenomics/dsm-framework/issues/1
 
 
 namespace request {
@@ -125,11 +125,7 @@ namespace request {
         std::cout << res << endl;
 
 
-
-
-
-
-        //socket::close(sock);
+        close(sock);
 
 
     }
