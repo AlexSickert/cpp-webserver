@@ -49,16 +49,13 @@ int main(int argc, char *argv[]) {
 
     measure::measure_start();
 
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 1; i++) {
         request::get("");
     }
 
     measure::measure_stop();
     measure::measure_print_result();
 
-
-
-    //request::time_stamp();
 
     //Create socket
     socket_desc = socket(AF_INET, SOCK_STREAM, 0);
@@ -157,11 +154,23 @@ void *connection_handler(void *socket_desc) {
 
     util::log("in connection_handler");
 
-    string s = "HTTP/1.1 200 OK\n\nxxx ";
+    string s = "HTTP/1.1 200 OK\n\n";
+    
+    s.append("<!DOCTYPE html>\n");
+    s.append("<html>\n");
+    s.append("<script>\n");
+    s.append(" location.reload(true); \n");
+    s.append("</script>\n");
+    s.append("</html>\n");
+    
+    
+    // location.reload(true);
+    
+    
 
-    s.append(int_to_str(1223454));
+    //s.append(int_to_str(1223454));
 
-    s.append(get_date_time());
+    //s.append(get_date_time());
 
     int n = s.length();
     char char_array[n + 1];
